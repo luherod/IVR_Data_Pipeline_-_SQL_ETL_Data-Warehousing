@@ -14,37 +14,33 @@ The final step involves implementing a data-cleaning function for handling integ
 
 ## Files description:
 
-* [](): creacción de tablas ivr_calls, ivr_modules, e ivr_steps y creación de la tabla ivr_detail a partir de las 
-anteriores.
+* [1_Create_ivr_detail_table.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/1_Crear_tabla_ivr_detail.sql): creation of the ivr_calls, ivr_modules, and ivr_steps tables, and creation of the ivr_detail table based on the previous ones.
 
-* [](): creación del campo campo vdn_aggregation: FRONT si vdn_label empieza por ATC, TECH si empieza por TECH, 
-ABSORTION si es ABSORPTION, RESTO en otros casos.
+* [2_Generate_vdn_aggregation_field.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/2_Generar_campo%20_vdn_aggregation.sql): creation of the vdn_aggregation field: FRONT if vdn_label starts with ATC, TECH if it starts with TECH, ABSORPTION if it is ABSORPTION, RESTO in other cases.
 
-* [](): generación de campos document_type y document_identification para cada llamada, de modo que para cada 
-llamada haya un único cliente identificado.
+* [3_Generate_document_type_document_identification_fields.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/3_Generar%20campos_document_type_document_identification.sql): generation of document_type and document_identification fields for each call, ensuring that there is a single customer identified per call.
 
-* [](): generar el campo customer_phone por cada llamada, de forma que haya un sólo cliente identificado para la 
-misma.
+* [4_Generate_customer_phone_field.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/4_Generar_campo_customer_phone.sql): generation of the customer_phone field for each call, ensuring that there is a single customer identified per call.
 
-* [](): generar el campo billing_account_id por cada llamada, de forma que haya un sólo cliente identificado para 
-la misma.
+* [5_Generate_billing_account_id_field.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/5_Generar_campo_billing_account_id.sql): generation of the billing_account_id field for each call, ensuring that there is a single customer identified per call.
 
-* [](): generar el campo masiva_lg con un registro por cada llamada y un flag que indique si la llamada ha pasado 
-por el módulo AVERIA_MASIVA (1) o no (0).
+* [6_Generate_masiva_lg_field.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/6_Generar_campo_masiva_lg.sql): generation of the masiva_lg field with a record for each call and a flag indicating whether the call passed through the AVERIA_MASIVA module (1) or not (0).
 
-* [](): generar el campo info_by_phone_lg con un registro por cada llamada y un flag (afirmativo: 1 / negativo:0) 
-que indique si la llamada pasa por el step CUSTOMERINFOBYPHONE.TX y su step_result es OK.
+* [7_Generate_info_by_phone_lg_field.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/7_Generar_campo_info_by_phone_lg.sql): generation of the info_by_phone_lg field with a record for each call and a flag (positive: 1 / negative: 0) indicating if the call passed through the CUSTOMERINFOBYPHONE.TX step and if its step_result is OK.
 
-* [](): generar el campo info_by_dni_lg con un registro por cada llamada y un flag (afirmativo: 1 / negativo:0) 
-que indique si la llamada pasa por el step CUSTOMERINFOBYDNI.TX y su step_result es OK.
+* [8_Generate_info_by_dni_lg_field.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/8_Generar_campo_info_by_dni_lg.sql): generation of the info_by_dni_lg field with a record for each call and a flag (positive: 1 / negative: 0) indicating if the call passed through the CUSTOMERINFOBYDNI.TX step and if its step_result is OK.
 
-* [](): generar los campos repeated_phone_24H, cause_recall_phone_24H con un registro por cada llamada y dos flags 
-(afirmativo: 1 / negativo:0) que indiquen si el calls_phone_number tiene una llamada las anteriores 24 horas o en
-las siguientes 24 horas. 
+* [9_Generate_repeated_phone_24h_cause_recall_phone_24h_fields.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/9_Generar_campos_repeated_phone_24h_cause_recall_phone_24h.sql): generation of the repeated_phone_24H and cause_recall_phone_24H fields with a record for each call and two flags (positive: 1 / negative: 0) indicating if the calls_phone_number has had a call in the previous 24 hours or the following 24 hours.
 
-* [](): Crear ivr_summary como tabla resumen de la llamada donde se incluyen sus indicadores más importantes.
+* [10_Create_ivr_summary_table.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/10_Crear_tabla_ivr_summary.sql): Create ivr_summary as a summary table for the call, including its most important indicators.
 
-* [](): función de limpieza de enteros que devuelve devuelva el valor -999999 si entra un null la función 
+* [Integer_cleaning_function.sql](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/Funcion_limpieza_de_enteros.sql): integer cleaning function that returns -999999 if a null is passed to the function.
+
+* [ivr_calls.csv](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/ivr_calls.csv): CSV with starting data related to the calls.
+
+* [ivr_modules.csv](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/ivr_modules.csv): CSV with starting data related to the different modules the call goes through.
+
+* [ivr_steps.csv](https://github.com/luherod/IVR_Data_Pipeline_-_SQL_ETL_Data-Warehousing/blob/main/ivr_steps.csv): CSV with starting data related to the steps the user takes within a module.
 
 ## Author
 
